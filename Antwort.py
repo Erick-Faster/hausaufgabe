@@ -9,14 +9,28 @@ import spacy
 from spellchecker import SpellChecker 
 from spacy.matcher import Matcher
 import time
+import pickle
 
+import pandas as pd
+
+def save_pickle(filename, objeto):
+    outfile = open(filename,'wb')
+    pickle.dump(objeto,outfile)
+    outfile.close()
+    
+def load_pickle(filename):
+    infile = open(filename,'rb')
+    objeto = pickle.load(infile)
+    infile.close()
+    return objeto
+    
+#Carregar Dicionario de Substantivos
+worter = load_pickle("Worter.p")
 
 #Configuration
 nlp = spacy.load('de_core_news_sm')
 matcher = Matcher(nlp.vocab)
 spell = SpellChecker(language='de')
-
-
 
 #Patterns
 patterns = [[{'LOWER': 'ich'}, {'LOWER':'bin'}, {'POS': 'PROPN'}],
