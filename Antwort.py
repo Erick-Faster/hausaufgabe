@@ -6,75 +6,70 @@ Created on Sun Jun 28 02:49:12 2020
 """
 
 import spacy
-from spellchecker import SpellChecker 
-from spacy.matcher import Matcher
 import time
-import pickle
+import random
+
+from tools import check_spell, check_match, check_kasus, save_pickle, load_pickle
+from tools import show_ents, show_details
+
+from fragen import get_fragen, get_patterns
+
+from spacy.matcher import Matcher
 
 import pandas as pd
 
-def save_pickle(filename, objeto):
-    outfile = open(filename,'wb')
-    pickle.dump(objeto,outfile)
-    outfile.close()
-    
-def load_pickle(filename):
-    infile = open(filename,'rb')
-    objeto = pickle.load(infile)
-    infile.close()
-    return objeto
+string = u'Ich wohne in Santo Andre. Ich mag Pizza. Ich sehe die Haus. Ich schicke meiner Mutter eine tolles Geschenk'
     
 #Carregar Dicionario de Substantivos
 worter = load_pickle("Worter.p")
 
 #Configuration
 nlp = spacy.load('de_core_news_sm')
+doc = nlp(string)
 matcher = Matcher(nlp.vocab)
-spell = SpellChecker(language='de')
+matcherNomen = Matcher(nlp.vocab)
 
-#Patterns
-patterns = [[{'LOWER': 'ich'}, {'LOWER':'bin'}, {'POS': 'PROPN'}],
-            [{'LOWER': 'ich'},{'LOWER':'heisse'}, {'POS': 'PROPN'}],
-            [{'LOWER': 'mein'}, {'LOWER':'name'}, {'LOWER':'ist'}, {'POS': 'PROPN'}]]
-matcher.add('Ex1', patterns)
+pattern = [[{'TAG': 'ART'}, {'TAG':'ADJA','OP':'*'}, {'DEP': 'oa'}]]
+matcherNomen.add('Nomen', pattern)
 
-#Inputs
-string = u'Ich heisse Eric. Mein Name ist Eric. Ich bin Eric. Ich schicke meiner Mutter ein Geschenk'
+#Generate Question
+fragen = get_fragen()
+patterns = get_patterns()
+
+dice = random.randint(0,1)
+matcher.add('Ex', patterns[2])
+print(fragen[2])
+
 
 begin = time.time()
 
-#Variables
-doc = nlp(string)
+#Details
+show_details(doc)
+show_ents(doc)
 
-found_matches = matcher(doc)
-if found_matches:
-    print('Correct Match')
-    print(found_matches)
-else:
-    print('Incorrect Match')
+#Checks
 
+print("Check Patterns:")
+check_match(doc, matcher)
+print('\n')
 
-#Spacy
-print("\n")
-for token in doc:
-    print(f'{token.text:{12}} {token.pos_:{6}} {spacy.explain(token.pos_):{15}} {token.tag_:{6}} {spacy.explain(token.tag_):{40}} {token.dep_:{6}} {spacy.explain(token.dep_)}')
-print("\n")
+print("Check Spelling:")
+check_spell(doc)
+print('\n')
 
-#SpellChecker
-words = [token.text for token in doc]
-misspelled = spell.unknown(words)
+print("Check Kasus")
+spans = check_match(doc,matcherNomen)
+check_kasus(spans, worter)
+print('\n')
 
 
-if misspelled:
-    for word in misspelled:
-        print(spell.correction(word))
-        print(spell.candidates(word))    
-else:    
-    print('Correct Spelling')
+
+
+
 
 finish = time.time()
 print("%.2fs"% (finish-begin))    
 
 
-
+show_details(nlp('Ich gehe. Du gehst. Er geht. Sie geht, Es geht. Wir gehen. Ihr geht. sie gehen. Sie gehen'))
 
