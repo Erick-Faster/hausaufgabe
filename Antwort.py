@@ -31,11 +31,15 @@ class NLP:
         
         #Patterns
         self.patterns = get_patterns()
-        self.pattern_nomen = [[{'TAG': 'ART'}, {'TAG':'ADJA','OP':'*'}, {'DEP': 'oa'}]]
-        
+        self.pattern_akk = [[{'TAG': 'ART'}, {'TAG':'ADJA','OP':'*'}, {'DEP': 'oa'}]]
+        self.pattern_nom = [[{'TAG': 'ART'}, {'TAG':'ADJA','OP':'*'}, {'DEP': 'sb'}]]
+        self.pattern_dat = [[{'TAG': 'ART'}, {'TAG':'ADJA','OP':'*'}, {'DEP': 'da'}]]
+
         #Add patterns
 
-        self.matcher.add('Nomen',self.pattern_nomen)        
+        self.matcher.add('Akk',self.pattern_akk)        
+        self.matcher.add('Nom',self.pattern_nom)        
+        self.matcher.add('Dat',self.pattern_dat)        
         
         #Variables
         self.found_matches = None
@@ -59,8 +63,8 @@ class NLP:
         
         #Check Kasus
         print("Check Kasus:")
-        spans = self.search_match('Nomen')
-        errors = check_kasus(spans, self.worter)
+        #spans = self.search_match('Akk')
+        errors = check_kasus(self.found_matches, self.worter)
         if errors:
             print("Found Errors")
             print(errors)
@@ -72,11 +76,6 @@ class NLP:
         check_spell(self.doc)
         print('\n')
 
-    '''
-    def checkKasus(self):
-        spans = check_match(doc,matcherNomen)
-        check_kasus(spans, worter)
-    '''
       
     def docDetails(self):
         show_details(self.doc)
@@ -118,7 +117,7 @@ object_nlp = NLP()
 
 begin = time.time()
 
-object_nlp.setDoc(u'Ich sehe ein blaues Haus. Mein Name ist Eric. Der rote Apfel. Die Banane. Der Apfel')
+object_nlp.setDoc(u'Ich sehe die Tisch. Ich sehe den Banane. Ich sehe den Haus. Die Banane und das Haus. Ich bin ein Hund. Die Mutter schickt der tollen Mutter ein tolles Geschenk. Ich sehe ein blaues Haus. Mein Name ist Eric. Der rote Apfel. Die Banane. Der Apfel')
 object_nlp.docDetails()
 object_nlp.checkSatz(0)
 

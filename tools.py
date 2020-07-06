@@ -8,12 +8,28 @@ import spacy
 import random
 import pickle
 from spellchecker import SpellChecker
-
-artikels = {'NM': ['die', 'das', 'eine'],
-            'NF': ['der', 'das', 'ein'],
-            'AM': ['der', 'die', 'das', 'ein', 'eine'],
-            'AF': ['der', 'das', 'den', 'einen', 'ein'],
-            'AN': ['der', 'die', 'den', 'einen', 'eine']}
+'''
+artikels = {'NM': ['die', 'das', 'den', 'dem', 'einen', 'einem', 'einer', 'eine'],
+            'NF': ['der', 'das', 'den', 'dem','einen', 'einem', 'einer', 'ein'],
+            'NN': ['der', 'die', 'den', 'dem','einen', 'einem', 'einer', 'eine'],
+            'AM': ['der', 'die', 'das', 'dem','ein', 'eine', 'einem', 'einer'],
+            'AF': ['der', 'das', 'den', 'dem','einen', 'ein', 'einem', 'einer'],
+            'AN': ['der', 'die', 'den', 'dem','einen', 'eine', 'einem', 'einer'],
+            'DM': ['der', 'die', 'den', 'dem','einen', 'eine', 'einem', 'einer'],
+            'DF': ['der', 'die', 'den', 'dem','einen', 'eine', 'einem', 'einer'],
+            'DN': ['der', 'die', 'den', 'dem','einen', 'eine', 'einem', 'einer']
+            }
+'''
+artikels = {'NM': ['der', 'ein'],
+            'NF': ['die', 'eine'],
+            'NN': ['das', 'ein'],
+            'AM': ['den', 'einen'],
+            'AF': ['die', 'eine'],
+            'AN': ['das', 'ein'],
+            'DM': ['dem', 'einem'],
+            'DF': ['der', 'einer'],
+            'DN': ['dem', 'einem']
+            }
 
 
 spell = SpellChecker(language='de')
@@ -46,22 +62,92 @@ def check_match(doc, matcher):
         print('Incorrect Match')
         return None
 
+def kasus_error(match, kasus):
+
+    for token in match:
+        token = token.text.lower()
+        for a in artikels[kasus]:
+            if token == a:
+                return False
+    return True
+    
+    
+
 def check_kasus(spans, worter):
     
-    errors = []       
-    for match in spans:
-        for token in match:
-            wort = token.text.lower()
-            if wort in worter:
-                artikel = worter[wort]['Gender']
-                
-        if artikel == 'Das':
+    artikel = None
+    errors = []   
+    
+    for kasus, match in spans:
+        
+        if kasus == 'Nom':
+            
             for token in match:
-                for a in artikels['AN']:
-                    if token.text == a:
-                        errors.append(match)
-                        #print("Wrong Gender: %s"%token.text)
-                        
+                wort = token.text.lower()
+                if wort in worter:
+                    artikel = worter[wort]['Gender']
+                    
+            if artikel == 'Das':
+                if kasus_error(match,'NN'):
+                    errors.append({'match':match, 'correct': 'Neutral'})
+
+            elif artikel == 'Die':
+                if kasus_error(match,'NF'):
+                    errors.append({'match':match, 'correct': 'Feminin'})
+                            
+            elif artikel == 'Der':
+                if kasus_error(match,'NM'):
+                    errors.append({'match':match, 'correct': 'Masculin'})
+                            
+            else:
+                print('No Gender Found')
+                
+        elif kasus == 'Akk':
+            
+            for token in match:
+                wort = token.text.lower()
+                if wort in worter:
+                    artikel = worter[wort]['Gender']
+                    
+            if artikel == 'Das':
+                if kasus_error(match,'AN'):
+                    errors.append({'match':match, 'correct': 'Neutral'})
+
+            elif artikel == 'Die':
+                if kasus_error(match,'AF'):
+                    errors.append({'match':match, 'correct': 'Feminin'})
+                            
+            elif artikel == 'Der':
+                if kasus_error(match,'AM'):
+                    errors.append({'match':match, 'correct': 'Masculin'})
+                            
+            else:
+                print('No Gender Found')
+
+        elif kasus == 'Dat':
+            
+            for token in match:
+                wort = token.text.lower()
+                if wort in worter:
+                    artikel = worter[wort]['Gender']
+                    
+            if artikel == 'Das':
+                if kasus_error(match,'DN'):
+                    errors.append({'match':match, 'correct': 'Neutral'})
+
+            elif artikel == 'Die':
+                if kasus_error(match,'DF'):
+                    errors.append({'match':match, 'correct': 'Feminin'})
+                            
+            elif artikel == 'Der':
+                if kasus_error(match,'DM'):
+                    errors.append({'match':match, 'correct': 'Masculin'})
+                            
+            else:
+                print('No Gender Found')
+        else:
+            pass
+                            
     if errors:
         return errors
     else:
