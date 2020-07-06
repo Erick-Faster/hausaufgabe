@@ -17,7 +17,7 @@ artikels = {'NM': ['die', 'das', 'eine'],
 
 
 spell = SpellChecker(language='de')
- 
+
 
 def check_spell(doc):
     #SpellChecker
@@ -39,13 +39,16 @@ def check_match(doc, matcher):
         print('Correct Match')
         print(found_matches)
         for item in found_matches:
+            
             sentences.append(doc[item[1]:item[2]])
         return sentences
     else:
         print('Incorrect Match')
         return None
 
-def check_kasus(spans, worter):       
+def check_kasus(spans, worter):
+    
+    errors = []       
     for match in spans:
         for token in match:
             wort = token.text.lower()
@@ -56,7 +59,13 @@ def check_kasus(spans, worter):
             for token in match:
                 for a in artikels['AN']:
                     if token.text == a:
-                        print("Wrong Gender: %s"%token.text)
+                        errors.append(match)
+                        #print("Wrong Gender: %s"%token.text)
+                        
+    if errors:
+        return errors
+    else:
+        return None
        
 def save_pickle(filename, objeto):
     outfile = open(filename,'wb')

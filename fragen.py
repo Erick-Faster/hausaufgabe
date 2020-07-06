@@ -10,7 +10,7 @@ def get_fragen():
     fragen = {}
     
     fragen[0] = 'Wie heissen Sie?'
-    fragen[1] = 'Wo arbeiten Sie?'
+    fragen[1] = 'Wo wohnen Sie?'
     fragen[2] = 'Was mögen Sie?'
     
     return fragen
