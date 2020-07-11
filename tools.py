@@ -47,7 +47,7 @@ def check_spell(doc):
         for misspell in misspelled:
             correct = spell.correction(misspell)
             tip = spell.candidates(misspell)
-            error = {'match': misspell,'correct': correct, 'tip': tip}
+            error = {'match': misspell,'correct': correct, 'tip': 'Você quis dizer "{}"?'.format(correct)}
             errors.append(error)
         
     return errors
@@ -73,6 +73,8 @@ def kasus_error(match, kasus):
 
 def check_kasus(spans, worter):
     
+    if not spans:
+        return None
     artikel = None
     errors = []   
     

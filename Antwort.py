@@ -12,15 +12,21 @@ object_nlp = NLP()
 
 begin = time.time()
 
-object_nlp.setDoc(u'Ich sehe die Tisch. Ich sehe den Banane. Ich sehe den Haus. Die Banane und das Haus. Ich bin ein Hund. Die Mutter schickt der tollen Mutter ein tolles Geschenk. Ich sehe ein blaues Haus. Der rote Apfel. Die Banane. Der Apfel')
-object_nlp.docDetails()
+string = u'Ich sehe eine roten Apfel. Ich helfe der Kind.'
+object_nlp.setDoc(string)
 
-errors = object_nlp.checkSatz(0)
+#dsobject_nlp.docDetails()
+
+errors = object_nlp.checkSatz(2)
 
 finish = time.time()
-print("%.2fs"% (finish-begin))  
+#print("%.2fs"% (finish-begin))  
 
-print(errors)
+
+#print(f'Frase: {object_nlp.doc}\n')
+for error in errors:
+    print(f'Erro: {error["match"]}')
+    print(f'Correção: {error["tip"]}\n')
         
 
 #Generate Question

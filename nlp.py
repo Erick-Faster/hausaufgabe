@@ -47,17 +47,21 @@ class NLP:
     def setDoc(self, string):
         self.doc = self.nlp(string)
     
-    def checkSatz(self, id_frage):
-        self.matcher.add('Ex', self.patterns[id_frage])
+    def checkSatz(self, id_frage=None):
+        
+        if id_frage is not None:
+            self.matcher.add('Ex', self.patterns[id_frage])
+        
         self.check_match()
         
         total_errors = []
         
         #Check Pattern
-        found = self.search_match('Ex')
-        if not found:
-            error = {'match': 'Padrão não encontrado', 'correct':'-','tip':'-'}
-            total_errors.append(error)
+        if id_frage is not None:
+            found = self.search_match('Ex')
+            if not found:
+                error = {'match': 'Padrão não encontrado', 'correct':'-','tip':'-'}
+                total_errors.append(error)
 
         #Check Spelling
         errors = check_spell(self.doc)
