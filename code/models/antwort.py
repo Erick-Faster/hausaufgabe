@@ -5,16 +5,19 @@ class AntwortModel(db.Model):
     __tablename__ = 'antworten'
 
     id = db.Column(db.Integer, primary_key=True)
+    num_frage = db.Column(db.Integer())
     antwort = db.Column(db.String(80))
     success = db.Column(db.Boolean())
 
-    def __init__(self, antwort, success):
+    def __init__(self, num_frage, antwort, success):
+        self.num_frage = num_frage
         self.antwort = antwort
         self.success = success
 
     def json(self):
         return {
             'id': self.id,
+            'num_frage': self.num_frage,
             'antwort': self.antwort,
             'success': self.success}
 

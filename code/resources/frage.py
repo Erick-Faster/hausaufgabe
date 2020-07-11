@@ -40,10 +40,6 @@ class Frage(Resource):
         nlp.setDoc(data['antwort'])
         errors = nlp.checkSatz(data['num_frage'])
 
-        
-
-
-
         response = {}
         response['antwort'] = data['antwort']
 
@@ -55,7 +51,7 @@ class Frage(Resource):
 
         response['success'] = success
 
-        antwort = AntwortModel(data['antwort'], success)
+        antwort = AntwortModel(data['num_frage'], data['antwort'], success)
 
         try:
             antwort.save_to_db()
