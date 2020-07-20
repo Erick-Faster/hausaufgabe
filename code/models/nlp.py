@@ -63,7 +63,7 @@ class NLPModel:
         if id_frage is not None:
             found = self.search_match('Ex')
             if not found:
-                error = {'match': 'Padrão não encontrado', 'correct':'-','tip':'-'}
+                error = {'match': 'Acho que essa resposta não fez muito sentido...', 'correct':'-','tip':'Se quiser, pode tentar de novo =D'}
                 total_errors.append(error)
             self.matcher.remove('Ex')
 

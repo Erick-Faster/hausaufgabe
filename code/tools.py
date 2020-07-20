@@ -47,7 +47,8 @@ def check_spell(doc):
         for misspell in misspelled:
             correct = spell.correction(misspell)
             tip = spell.candidates(misspell)
-            error = {'match': misspell,'correct': correct, 'tip': 'Você quis dizer "{}"?'.format(correct)}
+            misspell_text = f'Esta palavra... "{misspell}"'
+            error = {'match': misspell_text,'correct': correct, 'tip': 'Você quis dizer "{}"?'.format(correct)}
             errors.append(error)
         
     return errors
@@ -86,18 +87,20 @@ def check_kasus(spans, worter):
                 wort = token.text.lower()
                 if wort in worter:
                     artikel = worter[wort]['Gender']
+
+            #match_text = f"Este"
                     
             if artikel == 'Das':
                 if kasus_error(match,'NN'):
-                    errors.append({'match':str(match), 'correct': 'Neutral', 'tip':'Deve-se declinar no Nominativo Neutro'})
+                    errors.append({'match': f'Este trecho... "{str(match)}"', 'correct': 'Neutral', 'tip':'Você deveria declinar no Nominativo Neutro'})
 
             elif artikel == 'Die':
                 if kasus_error(match,'NF'):
-                    errors.append({'match':str(match), 'correct': 'Feminin', 'tip':'Deve-se declinar no Nominativo Feminino'})
+                    errors.append({'match': f'Este trecho... "{str(match)}"', 'correct': 'Feminin', 'tip':'Você deveria declinar no Nominativo Feminino'})
                             
             elif artikel == 'Der':
                 if kasus_error(match,'NM'):
-                    errors.append({'match':str(match), 'correct': 'Masculin', 'tip':'Deve-se declinar no Nominativo Masculino'})
+                    errors.append({'match': f'Este trecho... "{str(match)}"', 'correct': 'Masculin', 'tip':'Você deveria declinar no Nominativo Masculino'})
                             
             else:
                 print('No Gender Found')
@@ -111,15 +114,15 @@ def check_kasus(spans, worter):
                     
             if artikel == 'Das':
                 if kasus_error(match,'AN'):
-                    errors.append({'match':str(match), 'correct': 'Neutral', 'tip':'Deve-se declinar no Acusativo Neutro'})
+                    errors.append({'match': f'Este trecho... "{str(match)}"', 'correct': 'Neutral', 'tip':'Você deveria declinar no Acusativo Neutro'})
 
             elif artikel == 'Die':
                 if kasus_error(match,'AF'):
-                    errors.append({'match':str(match), 'correct': 'Feminin', 'tip':'Deve-se declinar no Acusativo Feminino'})
+                    errors.append({'match': f'Este trecho... "{str(match)}"', 'correct': 'Feminin', 'tip':'Você deveria declinar no Acusativo Feminino'})
                             
             elif artikel == 'Der':
                 if kasus_error(match,'AM'):
-                    errors.append({'match':str(match), 'correct': 'Masculin', 'tip':'Deve-se declinar no Acusativo Masculino'})
+                    errors.append({'match': f'Este trecho... "{str(match)}"', 'correct': 'Masculin', 'tip':'Você deveria declinar no Acusativo Masculino'})
                             
             else:
                 print('No Gender Found')
@@ -133,15 +136,15 @@ def check_kasus(spans, worter):
                     
             if artikel == 'Das':
                 if kasus_error(match,'DN'):
-                    errors.append({'match':str(match), 'correct': 'Neutral', 'tip':'Deve-se declinar no Dativo Neutro'})
+                    errors.append({'match': f'Este trecho... "{str(match)}"', 'correct': 'Neutral', 'tip':'Você deveria declinar no Dativo Neutro'})
 
             elif artikel == 'Die':
                 if kasus_error(match,'DF'):
-                    errors.append({'match':str(match), 'correct': 'Feminin', 'tip':'Deve-se declinar no Dativo Feminino'})
+                    errors.append({'match': f'Este trecho... "{str(match)}"', 'correct': 'Feminin', 'tip':'Você deveria declinar no Dativo Feminino'})
                             
             elif artikel == 'Der':
                 if kasus_error(match,'DM'):
-                    errors.append({'match':str(match), 'correct': 'Masculin', 'tip':'Deve-se declinar no Dativo Masculino'})
+                    errors.append({'match': f'Este trecho... "{str(match)}"', 'correct': 'Masculin', 'tip':'Você deveria declinar no Dativo Masculino'})
                             
             else:
                 print('No Gender Found')
