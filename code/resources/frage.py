@@ -4,11 +4,13 @@ from flask import json
 from fragen import get_fragen
 from models.nlp import NLPModel
 from models.antwort import AntwortModel
+from models.bot import ChatBotModel
 
 import random
 
 fragen = get_fragen()
 nlp = NLPModel()
+bot = ChatBotModel()
 
 class Frage(Resource):
 
@@ -58,6 +60,12 @@ class Frage(Resource):
             print('Save to database successful')
         except Exception as e:
             return {'message': "An error occured while creating the store: {}".format(str(e))}, 500
+
+        if errors:
+            return response, 200
+
+        response['bot_antwort'] = bot.chatbot_response(data['antwort'])
+
 
         return response, 200
 

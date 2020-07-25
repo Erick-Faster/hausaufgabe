@@ -1,0 +1,34 @@
+{"intents":
+        [
+                {"tag": "noanswer",
+                "patterns": [],
+                "responses": ["Não to te entendendo AAAAAAAAAAAAAAAAA", "Por favor, me dê mais informações", "Não sei se eu entendi"],
+                "context": 0
+                },
+                {"tag": "greeting",
+                "patterns": ["hallo"],
+                "responses": ["Hallo! Wie geht es dir?"],
+                "context": 0
+                },
+                {"tag": "halloinformell",
+                "patterns": ["hallo! wie geht es dir", "wie geht's dir", "wie geht's ab"],
+                "responses": ["Es geht mir super! Und dir?", "Mir geht es prima! Und dir?" , "Gut! Und dir?"],
+                "context": 0
+                },
+                {"tag": "halloformell",
+                "patterns": ["wie geht's ihnen", "wie geht es ihnen"],
+                "responses": ["Es geht mir prima! Und Ihnen?", "Danke, es geht mir gut! Und Ihnen?", "Mir geht es gut! Und Ihnen?"],
+                "context": 0
+                },
+                {"tag": "name",
+                "patterns": ["Ich heisse", "Ich heiße", "Ich heiße _name_"],
+                "responses": ["Das ist ein schöner Name!", "Schön, dich kennenzulernen!" , "Sehr erfreut! Mein Name ist Bot!"],
+                "context": 0
+                },
+                {"tag": "tschus",
+                "patterns": ["Auf Wiedersehen", "Tschüss", "Tschüs", "Ciao", "Bis dann", "Bis später", "bis bald"],
+                "responses": ["Tschüss! Lass uns später wieder sprechen!"],
+                "context": 0
+                }                
+        ]
+}

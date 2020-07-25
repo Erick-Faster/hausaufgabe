@@ -6,6 +6,7 @@ from db import db
 
 from resources.user import UserRegister, User, UserLogin, UserLogout, TokenRefresh
 from resources.frage import Frage, AntwortList
+from resources.neural import Neural
 from datetime import timedelta
 from blacklist import BLACKLIST
 
@@ -90,6 +91,7 @@ def customized_error_handler(error):
     }), error.status_code
 '''
 
+api.add_resource(Neural, '/neural')
 api.add_resource(AntwortList, '/antworten')
 api.add_resource(Frage, '/frage')
 api.add_resource(UserRegister, '/register')
@@ -100,4 +102,4 @@ api.add_resource(TokenRefresh, '/refresh')
 
 if __name__ == '__main__': #evita que, ao importar app, nao execute novamente,
     db.init_app(app)
-    app.run(port=5050, debug=True) #debug mostra msgs de erro
+    app.run(port=5050, debug=False, threaded=False) #debug mostra msgs de erro
