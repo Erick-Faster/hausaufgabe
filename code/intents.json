@@ -8,12 +8,17 @@
                 {"tag": "greeting",
                 "patterns": ["hallo"],
                 "responses": ["Hallo! Wie geht es dir?"],
-                "context": 0
+                "context": 1
                 },
                 {"tag": "halloinformell",
                 "patterns": ["hallo! wie geht es dir", "wie geht's dir", "wie geht's ab"],
                 "responses": ["Es geht mir super! Und dir?", "Mir geht es prima! Und dir?" , "Gut! Und dir?"],
-                "context": 0
+                "context": 1
+                },
+                {"tag": "gut",
+                "patterns": ["es geht mir gut", "mir geht es gut", "es geht"],
+                "responses": ["Toll"],
+                "context": null
                 },
                 {"tag": "halloformell",
                 "patterns": ["wie geht's ihnen", "wie geht es ihnen"],
@@ -29,6 +34,21 @@
                 "patterns": ["Auf Wiedersehen", "Tschüss", "Tschüs", "Ciao", "Bis dann", "Bis später", "bis bald"],
                 "responses": ["Tschüss! Lass uns später wieder sprechen!"],
                 "context": 0
-                }                
+                },
+                {"tag": "woherSie",
+                "patterns": ["Woher kommen Sie?", "Wo kommen Sie her?"],
+                "responses": ["Ich komme aus Brasilien! Und Sie?", "Ich komme aus der Maschine! Und Sie?", "Ich komme aus Deutschland! Und Sie?"],
+                "context": 0
+                },
+                {"tag": "woherDu",
+                "patterns": ["Woher kommst du?", "Wo kommst du her?"],
+                "responses": ["Ich komme aus Brasilien! Und du?", "Ich komme aus der Maschine! Und du?", "Ich komme aus Deutschland! Und du?"],
+                "context": 0
+                },
+                {"tag": "w",
+                "patterns": [""],
+                "responses": [""],
+                "context": 0
+                }   
         ]
 }

@@ -20,16 +20,22 @@ def get_patterns():
     
     patterns = {}
     
+    '''
     patterns[0] = [[{'LOWER': 'hallo'}],      
         [{'LOWER': 'guten'},{'LOWER':'tag'}],
         [{'LOWER': 'guten'},{'LOWER':'morgen'}],
         [{'LOWER': 'gute'},{'LOWER':'nacht'}],
         [{'LOWER': 'guten'}, {'LOWER':'abend'}]]
-    patterns[1] = [[{'LOWER': 'ich'}, {'LOWER':'bin'}, {'POS': 'PROPN'}],      
+    '''
+    patterns[1] = [[{'LOWER': 'es'},{'LOWER': 'geht'}, {'LOWER': 'mir'}], 
+        [{'LOWER': 'mir'},{'LOWER':'geht'}, {'LOWER':'es'}]]
+
+
+    patterns[2] = [[{'LOWER': 'ich'}, {'LOWER':'bin'}, {'POS': 'PROPN'}],      
         [{'LOWER': 'ich'},{'LOWER':'heisse'}, {'POS': 'PROPN'}],
         [{'LOWER': 'mein'}, {'LOWER':'name'}, {'LOWER':'ist'}, {'POS': 'PROPN'}]]
-    patterns[2] = [[{'LOWER': 'ich'}, {'LOWER':'wohne'}, {'LOWER':'in'}, {'ENT_TYPE':'LOC','OP':'+'}]]
-    patterns[3] = [[{'LOWER': 'ich'}, {'LOWER':'mag'}, {'DEP':'oa'}]]
+    patterns[3] = [[{'LOWER': 'ich'}, {'LOWER':'wohne'}, {'LOWER':'in'}, {'ENT_TYPE':'LOC','OP':'+'}]]
+    patterns[4] = [[{'LOWER': 'ich'}, {'LOWER':'mag'}, {'DEP':'oa'}]]
     
     
     return patterns

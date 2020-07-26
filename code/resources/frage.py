@@ -28,7 +28,7 @@ class Frage(Resource):
 
     def get(self):
 
-        frage = {'num_frage':0,
+        frage = {'num_frage':None,
                  'frage': fragen[0]}
 
         return frage

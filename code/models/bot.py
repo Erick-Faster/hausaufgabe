@@ -68,9 +68,10 @@ class ChatBotModel:
                 result = random.choice(i['responses'])
                 context = i['context']
                 patterns = i['patterns']
+                tag = i['tag']
                 break
 
-        res = {"result": result, "context": context, "patterns": patterns}
+        res = {"result": result, "context": context, "patterns": patterns, "tag": tag}
         return res
 
     def chatbot_response(self, text):
