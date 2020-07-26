@@ -67,8 +67,11 @@ class ChatBotModel:
             if(i['tag'] == tag):
                 result = random.choice(i['responses'])
                 context = i['context']
+                patterns = i['patterns']
                 break
-        return {"result": result, "context": context}
+
+        res = {"result": result, "context": context, "patterns": patterns}
+        return res
 
     def chatbot_response(self, text):
         ints = self.predict_class(text, self.model)

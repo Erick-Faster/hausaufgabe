@@ -27,11 +27,9 @@ class Frage(Resource):
     )
 
     def get(self):
-        
-        num_frage = random.randint(0,2)
 
-        frage = {'num_frage':num_frage,
-                 'frage': fragen[num_frage]}
+        frage = {'num_frage':0,
+                 'frage': fragen[0]}
 
         return frage
 

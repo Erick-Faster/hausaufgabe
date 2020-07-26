@@ -10,8 +10,9 @@ def get_fragen():
     fragen = {}
     
     fragen[0] = 'Wie heissen Sie?'
-    fragen[1] = 'Wo wohnen Sie?'
-    fragen[2] = 'Was mögen Sie?'
+    fragen[1] = 'Wie heissen Sie?'
+    fragen[2] = 'Wo wohnen Sie?'
+    fragen[3] = 'Was mögen Sie?'
     
     return fragen
 
@@ -19,11 +20,16 @@ def get_patterns():
     
     patterns = {}
     
-    patterns[0] = [[{'LOWER': 'ich'}, {'LOWER':'bin'}, {'POS': 'PROPN'}],      
+    patterns[0] = [[{'LOWER': 'hallo'}],      
+        [{'LOWER': 'guten'},{'LOWER':'tag'}],
+        [{'LOWER': 'guten'},{'LOWER':'morgen'}],
+        [{'LOWER': 'gute'},{'LOWER':'nacht'}],
+        [{'LOWER': 'guten'}, {'LOWER':'abend'}]]
+    patterns[1] = [[{'LOWER': 'ich'}, {'LOWER':'bin'}, {'POS': 'PROPN'}],      
         [{'LOWER': 'ich'},{'LOWER':'heisse'}, {'POS': 'PROPN'}],
         [{'LOWER': 'mein'}, {'LOWER':'name'}, {'LOWER':'ist'}, {'POS': 'PROPN'}]]
-    patterns[1] = [[{'LOWER': 'ich'}, {'LOWER':'wohne'}, {'LOWER':'in'}, {'ENT_TYPE':'LOC','OP':'+'}]]
-    patterns[2] = [[{'LOWER': 'ich'}, {'LOWER':'mag'}, {'DEP':'oa'}]]
+    patterns[2] = [[{'LOWER': 'ich'}, {'LOWER':'wohne'}, {'LOWER':'in'}, {'ENT_TYPE':'LOC','OP':'+'}]]
+    patterns[3] = [[{'LOWER': 'ich'}, {'LOWER':'mag'}, {'DEP':'oa'}]]
     
     
     return patterns
