@@ -3,48 +3,81 @@
                 {"tag": "noanswer",
                 "patterns": [],
                 "responses": ["Não to te entendendo AAAAAAAAAAAAAAAAA", "Por favor, me dê mais informações", "Não sei se eu entendi"],
-                "context": 0
+                "context": null
                 },
                 {"tag": "greeting",
-                "patterns": ["hallo"],
+                "patterns": ["hallo", "guten tag", "guten abend", "gute nacht", "guten morgen"],
                 "responses": ["Hallo! Wie geht es dir?"],
-                "context": 1
+                "context": 0
                 },
                 {"tag": "halloinformell",
                 "patterns": ["hallo! wie geht es dir", "wie geht's dir", "wie geht's ab"],
                 "responses": ["Es geht mir super! Und dir?", "Mir geht es prima! Und dir?" , "Gut! Und dir?"],
-                "context": 1
+                "context": 0
+                },
+
+                {"tag": "halloformell",
+                "patterns": ["wie geht's ihnen", "wie geht es ihnen"],
+                "responses": ["Es geht mir prima! Und Ihnen?", "Danke, es geht mir gut! Und Ihnen?", "Mir geht es gut! Und Ihnen?"],
+                "context": 0
                 },
                 {"tag": "gut",
                 "patterns": ["es geht mir gut", "mir geht es gut", "es geht"],
                 "responses": ["Toll"],
                 "context": null
                 },
-                {"tag": "halloformell",
-                "patterns": ["wie geht's ihnen", "wie geht es ihnen"],
-                "responses": ["Es geht mir prima! Und Ihnen?", "Danke, es geht mir gut! Und Ihnen?", "Mir geht es gut! Und Ihnen?"],
-                "context": 0
+                {"tag": "nameSie",
+                "patterns": ["Wie heißen Sie?", "Wer sind Sie?", "Wie ist Ihr Name?"],
+                "responses": ["Ich heiße GerBot! Und Sie?", "Mein Name ist GerBot! Und Sie?"],
+                "context": 1
                 },
-                {"tag": "name",
+                {"tag": "namedu",
+                "patterns": ["Wie heißt du?", "Wer bist du?", "Wie ist dein Name?"],
+                "responses": ["Ich heiße GerBot! Und du? Wie heißt du?", "Mein Name ist GerBot! Und du?"],
+                "context": 1
+                },
+                {"tag": "nameantwort",
                 "patterns": ["Ich heisse", "Ich heiße", "Ich heiße _name_"],
                 "responses": ["Das ist ein schöner Name!", "Schön, dich kennenzulernen!" , "Sehr erfreut! Mein Name ist Bot!"],
-                "context": 0
+                "context": null
                 },
-                {"tag": "tschus",
-                "patterns": ["Auf Wiedersehen", "Tschüss", "Tschüs", "Ciao", "Bis dann", "Bis später", "bis bald"],
-                "responses": ["Tschüss! Lass uns später wieder sprechen!"],
-                "context": 0
+                
+                {"tag": "wohnenSie",
+                "patterns": ["Wo wohnen Sie?", "Wo leben Sie?"],
+                "responses": ["Ich wohne in Erfurt! Und Sie?"],
+                "context": 2
+                },
+                {"tag": "wohnendu",
+                "patterns": ["Wo wohnst du?", "Wo lebst du?"],
+                "responses": ["Ich wohne in Erfurt! Und du?"],
+                "context": 2
+                },
+                {"tag": "wohnenantwort",
+                "patterns": ["Ich wohne in", "Ich lebe in"],
+                "responses": ["Ich kenne diesen Ort! Wunderbar!", "Diesen Ort kenne ich nicht! Interessant!"],
+                "context": null
                 },
                 {"tag": "woherSie",
                 "patterns": ["Woher kommen Sie?", "Wo kommen Sie her?"],
                 "responses": ["Ich komme aus Brasilien! Und Sie?", "Ich komme aus der Maschine! Und Sie?", "Ich komme aus Deutschland! Und Sie?"],
-                "context": 0
+                "context": 3
                 },
                 {"tag": "woherDu",
                 "patterns": ["Woher kommst du?", "Wo kommst du her?"],
                 "responses": ["Ich komme aus Brasilien! Und du?", "Ich komme aus der Maschine! Und du?", "Ich komme aus Deutschland! Und du?"],
-                "context": 0
+                "context": 3
                 },
+                {"tag": "woherantwort",
+                "patterns": ["Ich komme aus"],
+                "responses": ["Interessant!"],
+                "context": null
+                },
+                {"tag": "tschus",
+                "patterns": ["Auf Wiedersehen", "Tschüss", "Tschüs", "Ciao", "Bis dann", "Bis später", "bis bald"],
+                "responses": ["Tschüss! Lass uns später wieder sprechen!"],
+                "context": null
+                },
+
                 {"tag": "w",
                 "patterns": [""],
                 "responses": [""],
