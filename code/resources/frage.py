@@ -5,6 +5,7 @@ from fragen import get_fragen
 from models.nlp import NLPModel
 from models.antwort import AntwortModel
 from models.bot import ChatBotModel
+import datetime
 
 import random
 
@@ -51,7 +52,11 @@ class Frage(Resource):
 
         response['success'] = success
 
+        date = datetime.datetime.now()
+        response['date'] = date.strftime("%c")
+
         antwort = AntwortModel(data['num_frage'], data['antwort'], success)
+
 
         try:
             antwort.save_to_db()
@@ -63,7 +68,6 @@ class Frage(Resource):
             return response, 200
 
         response['bot_antwort'] = bot.chatbot_response(data['antwort'])
-
 
         return response, 200
 
