@@ -1,15 +1,15 @@
 from flask_restful import Resource, reqparse
 
 from flask import json
-from fragen import get_fragen
 from models.nlp import NLPModel
+from fragen import get_answers
 from models.antwort import AntwortModel
 from models.bot import ChatBotModel
 import datetime
-
 import random
+from fuzzywuzzy import fuzz
 
-fragen = get_fragen()
+answers = get_answers()
 nlp = NLPModel()
 bot = ChatBotModel()
 
@@ -30,7 +30,7 @@ class Frage(Resource):
     def get(self):
 
         frage = {'num_frage':None,
-                 'frage': fragen[0]}
+                 'frage': 'Hallo!'}
 
         return frage
 
@@ -38,8 +38,10 @@ class Frage(Resource):
 
         data = self.parser.parse_args() #Validacao das condicoes de entrada
 
+        num_frage = data['num_frage']
+
         nlp.setDoc(data['antwort'])
-        errors = nlp.checkSatz(data['num_frage'])
+        errors = nlp.checkSatz(num_frage)
 
         response = {}
         response['antwort'] = data['antwort']
@@ -55,7 +57,7 @@ class Frage(Resource):
         date = datetime.datetime.now()
         response['date'] = date.strftime("%c")
 
-        antwort = AntwortModel(data['num_frage'], data['antwort'], success)
+        antwort = AntwortModel(num_frage, data['antwort'], success)
 
 
         try:
@@ -67,7 +69,18 @@ class Frage(Resource):
         if errors:
             return response, 200
 
-        response['bot_antwort'] = bot.chatbot_response(data['antwort'])
+        if num_frage in answers:
+            for answer in answers[num_frage]:
+                ratio = fuzz.token_set_ratio(answer['element'],data['antwort'])
+                if ratio == 100:
+                    response['bot_antwort'] = {"result": answer['response'], "context": answer['context'], "patterns": "teste", "tag": "tagteste"}
+                    break
+            if 'bot_antwort' not in response:
+                #answer = answers[num_frage][-1]
+                response['bot_antwort'] = {"result": answer['response'], "context": answer['context'], "patterns": "teste", "tag": "tagteste"}
+                
+        else:
+            response['bot_antwort'] = bot.chatbot_response(data['antwort'])
 
         return response, 200
 

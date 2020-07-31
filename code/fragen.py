@@ -39,3 +39,13 @@ def get_patterns():
     
     
     return patterns
+
+def get_answers():
+
+    answers = {}
+
+    answers[3] = [{'element': 'Brasilien', 'response': "Brasilien ist wunderbar", 'context': 3},
+                 {'element': 'Deutschland', 'response': "Deutschland ist toll", 'context': 3},
+                 {'element': '', 'response': "Das ist ein tolles Land!", 'context': 3}]
+
+    return answers
