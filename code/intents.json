@@ -21,11 +21,6 @@
                 "responses": ["Es geht mir prima! Und Ihnen?", "Danke, es geht mir gut! Und Ihnen?", "Mir geht es gut! Und Ihnen?"],
                 "context": 0
                 },
-                {"tag": "gut",
-                "patterns": ["es geht mir gut", "mir geht es gut", "es geht"],
-                "responses": ["Toll"],
-                "context": null
-                },
                 {"tag": "nameSie",
                 "patterns": ["Wie heißen Sie?", "Wer sind Sie?", "Wie ist Ihr Name?"],
                 "responses": ["Ich heiße GerBot! Und Sie?", "Mein Name ist GerBot! Und Sie?"],
@@ -35,13 +30,7 @@
                 "patterns": ["Wie heißt du?", "Wer bist du?", "Wie ist dein Name?"],
                 "responses": ["Ich heiße GerBot! Und du? Wie heißt du?", "Mein Name ist GerBot! Und du?"],
                 "context": 1
-                },
-                {"tag": "nameantwort",
-                "patterns": ["Ich heisse", "Ich heiße", "Ich heiße _name_"],
-                "responses": ["Das ist ein schöner Name!", "Schön, dich kennenzulernen!" , "Sehr erfreut! Mein Name ist Bot!"],
-                "context": null
-                },
-                
+                },        
                 {"tag": "wohnenSie",
                 "patterns": ["Wo wohnen Sie?", "Wo leben Sie?"],
                 "responses": ["Ich wohne in Erfurt! Und Sie?"],
@@ -76,6 +65,16 @@
                 "patterns": ["Auf Wiedersehen", "Tschüss", "Tschüs", "Ciao", "Bis dann", "Bis später", "bis bald"],
                 "responses": ["Tschüss! Lass uns später wieder sprechen!"],
                 "context": null
+                },
+                {"tag": "lernenSie",
+                "patterns": ["Was lernen Sie", "Welche Sprache lernen Sie", "Welche Sprache können Sie", "Welche Sprachen lernen Sie"],
+                "responses": ["Ich lerne brasilianisches Portugiesisch! Und Sie?", "Ich lerne Deutsch! Und Sie?"],
+                "context": 5
+                },
+                {"tag": "lernstdu",
+                "patterns": ["Was lernst du", "Welche Sprache lernst du", "Welche Sprache kannst du", "Welche Sprachen lernst du"],
+                "responses": ["Ich lerne brasilianisches Portugiesisch! Und du?", "Ich lerne Deutsch! Und du?"],
+                "context": 5
                 },
 
                 {"tag": "w",

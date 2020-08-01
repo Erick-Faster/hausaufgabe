@@ -8,6 +8,7 @@ from models.bot import ChatBotModel
 import datetime
 import random
 from fuzzywuzzy import fuzz
+from logconfig import logger
 
 answers = get_answers()
 nlp = NLPModel()
@@ -38,6 +39,8 @@ class Frage(Resource):
 
         data = self.parser.parse_args() #Validacao das condicoes de entrada
 
+
+
         num_frage = data['num_frage']
 
         nlp.setDoc(data['antwort'])
@@ -55,14 +58,13 @@ class Frage(Resource):
         response['success'] = success
 
         date = datetime.datetime.now()
-        response['date'] = date.strftime("%c")
+        response['date'] = date.strftime("%X")
 
         antwort = AntwortModel(num_frage, data['antwort'], success)
 
 
         try:
             antwort.save_to_db()
-            print('Save to database successful')
         except Exception as e:
             return {'message': "An error occured while creating the store: {}".format(str(e))}, 500
 

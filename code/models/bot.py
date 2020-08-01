@@ -14,6 +14,7 @@ from keras.models import load_model
 import json
 import random
 
+from logconfig import logger
 
 class ChatBotModel:
 
@@ -42,8 +43,8 @@ class ChatBotModel:
             for i, w in enumerate(words):
                 if w == s:
                     bag[i] = 1
-                    if show_details:
-                        print("found in bag %s" %w)
+                    #if show_details:
+                    #   print("found in bag %s" %w)
         return(np.array(bag))
 
     def predict_class(self, sentence, model):
@@ -75,7 +76,9 @@ class ChatBotModel:
         return res
 
     def chatbot_response(self, text):
+        logger.info('Predicting answers...')
         ints = self.predict_class(text, self.model)
         res = self.getResponse(ints, self.intents)
+        logger.info('Prediction complete!')
         return res
 

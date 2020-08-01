@@ -19,9 +19,13 @@ from spacy.matcher import Matcher
 
 import pandas as pd
 
+from logconfig import logger
+
 class NLPModel:
 
     def __init__(self):
+
+        logger.info('Initializing NLP configuration...')
         
         #SpaCy Initializers
         self.antwort = 'None'
@@ -47,10 +51,14 @@ class NLPModel:
         #Variables
         self.found_matches = None
 
+        logger.info('NLP configuration complete!')
+
     def setDoc(self, string):
         self.doc = self.nlp(string)
     
     def checkSatz(self, id_frage=None):
+
+        logger.info('Checking errors and patterns...')
         
         if id_frage is not None:
             self.matcher.add('Ex', self.patterns[id_frage])
@@ -75,7 +83,9 @@ class NLPModel:
         #Check Kasus
         errors = check_kasus(self.found_matches, self.worter)
         if errors:
-            total_errors.extend(errors) 
+            total_errors.extend(errors)
+
+        logger.info('Errors and patterns checked!') 
             
         return total_errors
 
@@ -104,12 +114,11 @@ class NLPModel:
                 if id_match == id_string:
                     found.append(match)
             if found:
-                print("%d Matches with id_string %s found"%(len(found),id_string))
+                logger.info("%d Matches with id_string %s found"%(len(found),id_string))
                 return found
-            print("No Matches with id_string %s found" %id_string)
             return None
         else:
-            print('No Match Found')
+            logger.info("No Match Found")
             return None
 
     @classmethod

@@ -8,6 +8,9 @@ import spacy
 import random
 import pickle
 from spellchecker import SpellChecker
+
+from logconfig import logger
+
 '''
 artikels = {'NM': ['die', 'das', 'den', 'dem', 'einen', 'einem', 'einer', 'eine'],
             'NF': ['der', 'das', 'den', 'dem','einen', 'einem', 'einer', 'ein'],
@@ -103,7 +106,7 @@ def check_kasus(spans, worter):
                     errors.append({'match': f'Este trecho... "{str(match)}"', 'correct': 'Masculin', 'tip':'Você deveria declinar no Nominativo Masculino'})
                             
             else:
-                print('No Gender Found')
+                logger.error('No Gender Found')
                 
         elif kasus == 'Akk':
             
@@ -125,7 +128,7 @@ def check_kasus(spans, worter):
                     errors.append({'match': f'Este trecho... "{str(match)}"', 'correct': 'Masculin', 'tip':'Você deveria declinar no Acusativo Masculino'})
                             
             else:
-                print('No Gender Found')
+                logger.error('No Gender Found')
 
         elif kasus == 'Dat':
             
@@ -147,7 +150,7 @@ def check_kasus(spans, worter):
                     errors.append({'match': f'Este trecho... "{str(match)}"', 'correct': 'Masculin', 'tip':'Você deveria declinar no Dativo Masculino'})
                             
             else:
-                print('No Gender Found')
+                logger.error('No Gender Found')
         else:
             pass
                             

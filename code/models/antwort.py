@@ -1,4 +1,5 @@
 from db import db
+from logconfig import logger
 
 class AntwortModel(db.Model):
 
@@ -30,8 +31,10 @@ class AntwortModel(db.Model):
         return cls.query.all()
 
     def save_to_db(self):
+        logger.info('Saving answers to database')
         db.session.add(self)
         db.session.commit()
+        logger.info('Answer saved')
 
     def delete_from_db(self):
         db.session.delete(self)
