@@ -10,12 +10,6 @@
                 "responses": ["Hallo! Wie geht es dir?"],
                 "context": 0
                 },
-                {"tag": "halloinformell",
-                "patterns": ["hallo! wie geht es dir", "wie geht's dir", "wie geht's ab"],
-                "responses": ["Es geht mir super! Und dir?", "Mir geht es prima! Und dir?" , "Gut! Und dir?"],
-                "context": 0
-                },
-
                 {"tag": "halloformell",
                 "patterns": ["wie geht's ihnen", "wie geht es ihnen"],
                 "responses": ["Es geht mir prima! Und Ihnen?", "Danke, es geht mir gut! Und Ihnen?", "Mir geht es gut! Und Ihnen?"],
@@ -25,41 +19,16 @@
                 "patterns": ["Wie heißen Sie?", "Wer sind Sie?", "Wie ist Ihr Name?"],
                 "responses": ["Ich heiße GerBot! Und Sie?", "Mein Name ist GerBot! Und Sie?"],
                 "context": 1
-                },
-                {"tag": "namedu",
-                "patterns": ["Wie heißt du?", "Wer bist du?", "Wie ist dein Name?"],
-                "responses": ["Ich heiße GerBot! Und du? Wie heißt du?", "Mein Name ist GerBot! Und du?"],
-                "context": 1
                 },        
                 {"tag": "wohnenSie",
                 "patterns": ["Wo wohnen Sie?", "Wo leben Sie?"],
                 "responses": ["Ich wohne in Erfurt! Und Sie?"],
                 "context": 2
                 },
-                {"tag": "wohnendu",
-                "patterns": ["Wo wohnst du?", "Wo lebst du?"],
-                "responses": ["Ich wohne in Erfurt! Und du?"],
-                "context": 2
-                },
-                {"tag": "wohnenantwort",
-                "patterns": ["Ich wohne in", "Ich lebe in"],
-                "responses": ["Ich kenne diesen Ort! Wunderbar!", "Diesen Ort kenne ich nicht! Interessant!"],
-                "context": null
-                },
                 {"tag": "woherSie",
                 "patterns": ["Woher kommen Sie?", "Wo kommen Sie her?"],
                 "responses": ["Ich komme aus Brasilien! Und Sie?", "Ich komme aus der Maschine! Und Sie?", "Ich komme aus Deutschland! Und Sie?"],
                 "context": 3
-                },
-                {"tag": "woherDu",
-                "patterns": ["Woher kommst du?", "Wo kommst du her?"],
-                "responses": ["Ich komme aus Brasilien! Und du?", "Ich komme aus der Maschine! Und du?", "Ich komme aus Deutschland! Und du?"],
-                "context": 3
-                },
-                {"tag": "woherantwort",
-                "patterns": ["Ich komme aus"],
-                "responses": ["Interessant!"],
-                "context": null
                 },
                 {"tag": "tschus",
                 "patterns": ["Auf Wiedersehen", "Tschüss", "Tschüs", "Ciao", "Bis dann", "Bis später", "bis bald"],
@@ -76,7 +45,22 @@
                 "responses": ["Ich lerne brasilianisches Portugiesisch! Und du?", "Ich lerne Deutsch! Und du?"],
                 "context": 5
                 },
-
+                {"tag": "alt",
+                "patterns": ["Wie alt sind Sie?"],
+                "responses": ["Ich bin 26 Jahre alt! Und Sie?"],
+                "context": 6
+                },
+                {"tag": "telefonnummer",
+                "patterns": ["Wie ist Ihre Handynummer?", "Wie ist Ihre Festnetznummer?", "Wie ist Ihre Handynummer?", "Wie ist Ihre Nummer?"],
+                "responses": ["Ich habe kein Handy! Entschuldigung. Aber ich kann Ihnen eine Nachricht senden! Wie ist Ihre Telefonnummer?"],
+                "context": 7
+                },
+                {"tag": "geboren",
+                "patterns": ["Wann sind Sie geboren?"],
+                "responses": ["Ich bin am 01.08.2020 geboren! Und Sie?"],
+                "context": 8
+                }, 
+                
                 {"tag": "w",
                 "patterns": [""],
                 "responses": [""],

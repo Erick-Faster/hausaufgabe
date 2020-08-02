@@ -12,7 +12,7 @@ object_nlp = NLP()
 
 begin = time.time()
 
-string = u'Ich lerne auch Deutsch'
+string = u'Ich bin am 26.12.1993 geboren'
 object_nlp.setDoc(string)
 
 object_nlp.docDetails()

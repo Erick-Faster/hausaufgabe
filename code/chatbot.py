@@ -89,8 +89,8 @@ print(model.summary())
 
 history = model.fit(np.array(train_x),
                     np.array(train_y),
-                    epochs=20,
-                    batch_size=8,
+                    epochs=30,
+                    batch_size=32,
                     validation_split=0.1)
 
 model.save('chatbot_model.h5', history)
