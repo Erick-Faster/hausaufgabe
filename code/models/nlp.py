@@ -121,6 +121,31 @@ class NLPModel:
             logger.info("No Match Found")
             return None
 
+    def text_structure(self):
+        structure = {"ENT": [], "POS": [], "TAG": [], "DEP": [], "TEXT": []}
+        
+        if self.doc.ents:
+            for ent in self.doc.ents:
+                ent_add = ent.label_, ent.text, ent.start, ent.end
+                structure["ENT"].append(ent_add)
+        
+        for token in self.doc:
+
+            pos = token.pos_, token.i
+            structure["POS"].append(pos)
+
+            tag = token.tag_, token.i
+            structure["TAG"].append(tag)
+
+            dep = token.dep_, token.i
+            structure["DEP"].append(dep)
+            
+            text = token.text, token.i
+            structure["TEXT"].append(text)     
+        
+        print(structure)
+        return structure
+
     @classmethod
     def find_all(cls):
         return cls.query.all()

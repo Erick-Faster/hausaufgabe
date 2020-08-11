@@ -10,7 +10,7 @@ import random
 from fuzzywuzzy import fuzz
 from logconfig import logger
 
-answers = get_answers()
+#answers = get_answers()
 nlp = NLPModel()
 bot = ChatBotModel()
 
@@ -71,7 +71,12 @@ class Frage(Resource):
         if errors:
             return response, 200
 
+
+        structure = nlp.text_structure()
+        answers = get_answers(num_frage,structure)
+
         if num_frage in answers:
+            
             for answer in answers[num_frage]:
                 ratio = fuzz.token_set_ratio(answer['element'],data['antwort'])
                 if ratio == 100:

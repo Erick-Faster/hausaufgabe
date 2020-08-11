@@ -40,11 +40,6 @@
                 "responses": ["Ich lerne brasilianisches Portugiesisch! Und Sie?", "Ich lerne Deutsch! Und Sie?"],
                 "context": 5
                 },
-                {"tag": "lernstdu",
-                "patterns": ["Was lernst du", "Welche Sprache lernst du", "Welche Sprache kannst du", "Welche Sprachen lernst du"],
-                "responses": ["Ich lerne brasilianisches Portugiesisch! Und du?", "Ich lerne Deutsch! Und du?"],
-                "context": 5
-                },
                 {"tag": "alt",
                 "patterns": ["Wie alt sind Sie?"],
                 "responses": ["Ich bin 26 Jahre alt! Und Sie?"],
@@ -59,12 +54,37 @@
                 "patterns": ["Wann sind Sie geboren?"],
                 "responses": ["Ich bin am 01.08.2020 geboren! Und Sie?"],
                 "context": 8
-                }, 
-                
+                },
+                {"tag": "staatsangehorigkeit",
+                "patterns": ["Wie ist deine Staatsangehörigkeit"],
+                "responses": ["Meine Staatsangehörigkeit ist deutsch. Und du? Wie ist deine Staatsangehörigkeit?"],
+                "context": 9
+                } , 
                 {"tag": "w",
                 "patterns": [""],
                 "responses": [""],
                 "context": 0
-                }   
+                },
+                {"tag": "w",
+                "patterns": [""],
+                "responses": [""],
+                "context": 0
+                },
+                {"tag": "w",
+                "patterns": [""],
+                "responses": [""],
+                "context": 0
+                },   
+                {"tag": "w",
+                "patterns": [""],
+                "responses": [""],
+                "context": 0
+                },  
+                {"tag": "w",
+                "patterns": [""],
+                "responses": [""],
+                "context": 0
+                }
+                                
         ]
 }

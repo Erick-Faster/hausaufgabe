@@ -46,7 +46,9 @@ def get_patterns():
 
     return patterns
 
-def get_answers():
+def get_answers(num_frage, structure):
+
+    print("Estrutura: "+structure["ENT"][0][1])
 
     answers = {}
 
@@ -66,7 +68,7 @@ def get_answers():
                  {'element': '', 'response': "Hm... diese Stadt kenne ich nicht...", 'context': None}]   
 
     #Woher kommen Sie?
-    answers[3] = [{'element': 'Brasilien', 'response': "Brasilien ist wunderbar", 'context': None},
+    answers[3] = [{'element': structure['ENT'][0][1], 'response': f"{structure['ENT'][0][1]} ist wunderbar", 'context': None},
                  {'element': 'Deutschland', 'response': "Deutschland ist toll", 'context': None},
                  {'element': '', 'response': "Das ist ein tolles Land!", 'context': None}]
 
@@ -91,6 +93,9 @@ def get_answers():
     #Wann sind Sie geboren?
     answers[8] = [{'element': '', 'response': 'Schön! Laden Sie mich zu Ihrem Geburtstag ein!', 'context': None}]
 
+    #Wie ist deine Staatsangehörigkeit?
+    answers[9] = [{'element': '', 'response': 'Schön! Laden Sie mich zu Ihrem Geburtstag ein!', 'context': None}]
+ 
 
     #answers[] = [{'element': '', 'response': '', 'context': None}]
 
