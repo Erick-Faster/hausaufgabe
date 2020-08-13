@@ -8,6 +8,8 @@ import spacy
 import random
 import pickle
 from spellchecker import SpellChecker
+import pandas as pd
+from fuzzywuzzy import fuzz
 
 from logconfig import logger
 
@@ -187,3 +189,38 @@ def show_details(doc):
     for token in doc:
         print(f'{token.text:{12}} {token.pos_:{6}} {spacy.explain(token.pos_):{15}} {token.tag_:{6}} {spacy.explain(token.tag_):{40}} {token.dep_:{6}} {spacy.explain(token.dep_)}')
     print("\n")
+
+def choose_answer(answers, structure, antwort):
+
+    for answer in answers:
+
+        if 'structure' in answer and answer['structure'] == "ENT_LOC":
+            print("Found LOC")
+
+            for ent in structure['ENT']:
+                if "LOC" in ent:
+                    print("ENT_LOC: "+ent['LOC'])
+                    print(answer)
+                    
+                    resposta = answer['response']
+                    resposta = resposta.replace("ENT_LOC", ent['LOC'])
+
+                    context = answer['context']
+                    bot_answer = {'antwort': resposta, 'context': context}
+                    print(answer)
+                    print(bot_answer)
+                    return bot_answer
+
+        else:
+            ratio = fuzz.token_set_ratio(answer['element'],antwort)
+            if ratio == 100:
+                resposta = answer['response']
+                context = answer['context']
+                bot_answer = {'antwort': resposta, 'context': context}
+                return bot_answer
+
+    resposta = answer['response']
+    context = answer['context']
+    bot_answer = {'antwort': resposta, 'context': context}
+    return bot_answer
+

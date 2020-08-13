@@ -59,32 +59,11 @@
                 "patterns": ["Wie ist deine Staatsangehörigkeit"],
                 "responses": ["Meine Staatsangehörigkeit ist deutsch. Und du? Wie ist deine Staatsangehörigkeit?"],
                 "context": 9
-                } , 
+                }, 
                 {"tag": "w",
                 "patterns": [""],
                 "responses": [""],
                 "context": 0
-                },
-                {"tag": "w",
-                "patterns": [""],
-                "responses": [""],
-                "context": 0
-                },
-                {"tag": "w",
-                "patterns": [""],
-                "responses": [""],
-                "context": 0
-                },   
-                {"tag": "w",
-                "patterns": [""],
-                "responses": [""],
-                "context": 0
-                },  
-                {"tag": "w",
-                "patterns": [""],
-                "responses": [""],
-                "context": 0
-                }
-                                
+                }                           
         ]
 }

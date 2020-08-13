@@ -9,10 +9,12 @@ import datetime
 import random
 from fuzzywuzzy import fuzz
 from logconfig import logger
+from tools import choose_answer
 
 #answers = get_answers()
 nlp = NLPModel()
 bot = ChatBotModel()
+answers = get_answers()
 
 class Frage(Resource):
 
@@ -38,8 +40,6 @@ class Frage(Resource):
     def post(self):
 
         data = self.parser.parse_args() #Validacao das condicoes de entrada
-
-
 
         num_frage = data['num_frage']
 
@@ -73,21 +73,19 @@ class Frage(Resource):
 
 
         structure = nlp.text_structure()
-        answers = get_answers(num_frage,structure)
+
+
 
         if num_frage in answers:
-            
-            for answer in answers[num_frage]:
-                ratio = fuzz.token_set_ratio(answer['element'],data['antwort'])
-                if ratio == 100:
-                    response['bot_antwort'] = {"result": answer['response'], "context": answer['context'], "patterns": "teste", "tag": "tagteste"}
-                    break
-            if 'bot_antwort' not in response:
-                #answer = answers[num_frage][-1]
-                response['bot_antwort'] = {"result": answer['response'], "context": answer['context'], "patterns": "teste", "tag": "tagteste"}
+            bot_antwort = choose_answer(answers[num_frage], structure, data['antwort'])
+            response['bot_antwort'] = {'result': bot_antwort['antwort'], 'context': bot_antwort['context']}
                 
         else:
             response['bot_antwort'] = bot.chatbot_response(data['antwort'])
+
+        if 'bot_antwort' not in response:
+            #answer = answers[num_frage][-1]
+            response['bot_antwort'] = {"result": answer['response'], "context": answer['context'], "patterns": "teste", "tag": "tagteste"}
 
         return response, 200
 

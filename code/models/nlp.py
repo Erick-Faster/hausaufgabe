@@ -126,7 +126,8 @@ class NLPModel:
         
         if self.doc.ents:
             for ent in self.doc.ents:
-                ent_add = ent.label_, ent.text, ent.start, ent.end
+
+                ent_add = {ent.label_: ent.text, "start": ent.start, "end": ent.end}
                 structure["ENT"].append(ent_add)
         
         for token in self.doc:
