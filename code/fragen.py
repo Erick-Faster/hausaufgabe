@@ -67,7 +67,7 @@ def get_answers():
 
     #Woher kommen Sie?
     answers[3] = [{'element': 'Brasilien', 'response': "Brasilien ist wunderbar!", 'context': None, 'structure': None},
-                 {'element': "ENT_LOC", 'response': "ENT_LOC ist wunderbar!", 'context': None, 'structure': "ENT_LOC"},
+                 {'element': "ENT_LOC", 'response': "ENT_LOC ist wunderbar!", 'context': None, 'structure': "LOC"},
                  {'element': '', 'response': "Das ist ein tolles Land!", 'context': None, 'structure': None}]
 
     #Was mögen Sie?

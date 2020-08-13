@@ -194,26 +194,24 @@ def choose_answer(answers, structure, antwort):
 
     for answer in answers:
 
-        if 'structure' in answer and answer['structure'] == "ENT_LOC":
-            print("Found LOC")
+        if 'structure' in answer:
 
             for ent in structure['ENT']:
-                if "LOC" in ent:
-                    print("ENT_LOC: "+ent['LOC'])
-                    print(answer)
+                if answer['structure'] in ent:
                     
                     resposta = answer['response']
-                    resposta = resposta.replace("ENT_LOC", ent['LOC'])
+                    keyword = "ENT_"+answer['structure']
+                    resposta = resposta.replace(keyword, ent[answer['structure']])
 
                     context = answer['context']
                     bot_answer = {'antwort': resposta, 'context': context}
-                    print(answer)
-                    print(bot_answer)
+
                     return bot_answer
 
         else:
             ratio = fuzz.token_set_ratio(answer['element'],antwort)
             if ratio == 100:
+                
                 resposta = answer['response']
                 context = answer['context']
                 bot_answer = {'antwort': resposta, 'context': context}
