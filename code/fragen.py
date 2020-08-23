@@ -45,7 +45,22 @@ def get_patterns():
     patterns[8] = [[{'LOWER': 'ich'}, {'LOWER':'bin'}, {'OP':'+'}, {'LOWER':'geboren'}]]
     patterns[9] = [[{'OP':'+'}]]
     patterns[10] = [[{'LOWER': 'ich'}, {'LOWER':'arbeite'}, {'OP':'?'}, {'LOWER':'bei'}]]
-
+    patterns[11] = [[{'OP':'+'}]]
+    patterns[12] = [[{'OP':'+'}]]
+    patterns[13] = [[{'OP':'+'}]]
+    patterns[14] = [[{'OP':'+'}]]
+    patterns[15] = [[{'OP':'+'}]]
+    patterns[16] = [[{'OP':'+'}]]
+    patterns[17] = [[{'OP':'+'}]]
+    patterns[18] = [[{'OP':'+'}]]
+    patterns[19] = [[{'OP':'+'}]]
+    patterns[20] = [[{'OP':'+'}]]
+    patterns[21] = [[{'OP':'+'}]]
+    patterns[22] = [[{'OP':'+'}]]
+    patterns[23] = [[{'OP':'+'}]]
+    patterns[24] = [[{'OP':'+'}]]
+    patterns[25] = [[{'OP':'+'}]]
+    patterns[26] = [[{'OP':'+'}]]
     return patterns
 
 def get_answers():
@@ -101,7 +116,37 @@ def get_answers():
                  {'element': 'Nein', 'response': "Schade...", 'context': None},
                  {'element': '', 'response': "Hmm...", 'context': None}]
 
-    #answers[] = [{'element': '', 'response': '', 'context': None}]
+    answers[11] = [{'element': '', 'response': 'Schön! Lädst du mich zu deinem Geburtstag ein, bitte!!', 'context': None}]
+
+    answers[12] = [{'element': '', 'response': 'Toll!', 'context': None}]
+
+    answers[13] = [{'element': '', 'response': 'Es ist schön, Kinder zu haben!', 'context': None}]
+
+    answers[14] = [{'element': '', 'response': 'Ich möchte einen Freund haben', 'context': None}]
+
+    answers[15] = [{'element': '', 'response': 'Ich möchte eine Freundin haben', 'context': None}]
+
+    answers[16] = [{'element': '', 'response': 'Es ist schön, Geschwister zu haben', 'context': None}]
+
+    answers[17] = [{'element': '', 'response': 'Es ist schön, Brüder zu haben', 'context': None}]
+
+    answers[18] = [{'element': '', 'response': 'Es ist schön, Schwestern zu haben', 'context': None}]
+
+    answers[19] = [{'element': '', 'response': 'Es ist schön, Haustiere zu haben', 'context': None}]
+
+    answers[20] = [{'element': '', 'response': 'Es ist toll, Sprachen zu lernen', 'context': None}]
+
+    answers[21] = [{'element': '', 'response': 'Es ist schön, viele Sprachen zu sprechen!', 'context': None}]
+
+    answers[22] = [{'element': '', 'response': 'Deutsch ist cool!!', 'context': None}]
+
+    answers[23] = [{'element': '', 'response': 'Es ist ganz wichtig, immer auf Deutsch zu sprechen', 'context': None}]
+
+    answers[24] = [{'element': '', 'response': 'Toll!', 'context': None}]
+
+    answers[25] = [{'element': '', 'response': 'Wunderbar', 'context': None}]
+
+    answers[26] = [{'element': '', 'response': 'Diese Sprache ist wirklich wunderbar', 'context': None}]
 
     return answers
 
