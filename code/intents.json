@@ -64,6 +64,11 @@
                 "patterns": [""],
                 "responses": [""],
                 "context": 0
+                },    
+                {"tag": "builtcode",
+                "patterns": ["kennst du Builtcode?"],
+                "responses": ["Ja! Das ist ein brasilianisches Unternehmen, mit dem man wunderbar zusammenarbeiten kann. Arbeitest du dort?"],
+                "context": 10
                 }                           
         ]
 }

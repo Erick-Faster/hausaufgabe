@@ -43,6 +43,8 @@ def get_patterns():
     patterns[6] = [[{'LOWER': 'ich'}, {'LOWER':'bin'}, {'POS':'NUM'}, {'LOWER':'jahre', 'OP': '?'}, {'LOWER':'alt', 'OP': '?'}]]
     patterns[7] = [[{'LOWER': 'meine'}, {'LOWER':'telefonnummer'}, {'LOWER':'ist'}]]
     patterns[8] = [[{'LOWER': 'ich'}, {'LOWER':'bin'}, {'OP':'+'}, {'LOWER':'geboren'}]]
+    patterns[9] = [[{'OP':'+'}]]
+    patterns[10] = [[{'LOWER': 'ich'}, {'LOWER':'arbeite'}, {'OP':'?'}, {'LOWER':'bei'}]]
 
     return patterns
 
@@ -92,8 +94,12 @@ def get_answers():
     answers[8] = [{'element': '', 'response': 'Schön! Laden Sie mich zu Ihrem Geburtstag ein!', 'context': None}]
 
     #Wie ist deine Staatsangehörigkeit?
-    answers[9] = [{'element': '', 'response': 'Schön! Laden Sie mich zu Ihrem Geburtstag ein!', 'context': None}]
+    answers[9] = [{'element': '', 'response': 'Super! Mir gefällt dieses Land so sehr! *-*', 'context': None}]
  
+    #Kennst du Builtcode
+    answers[10] = [{'element': 'Ja', 'response': "Ausgezeichnet! Ich möchte auch bei Builtcode arbeiten", 'context': None},
+                 {'element': 'Nein', 'response': "Schade...", 'context': None},
+                 {'element': '', 'response': "Hmm...", 'context': None}]
 
     #answers[] = [{'element': '', 'response': '', 'context': None}]
 
